@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using MyFirstBlog.Dtos;
 using MyFirstBlog.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MyFirstBlog.Controllers {
     [ApiController]
-    [Route("posts")] // commonly done as "[controller]" which will take the controllers name. Currently both would be "/posts"
+    [Route("[controller]")]
 
     public class PostsController : ControllerBase {
         private readonly IPostsRepository repository;
