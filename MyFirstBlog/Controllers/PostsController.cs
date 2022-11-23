@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MyFirstBlog.Dtos;
-using MyFirstBlog.Models;
 using MyFirstBlog.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
