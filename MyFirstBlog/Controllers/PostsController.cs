@@ -21,10 +21,10 @@ namespace MyFirstBlog.Controllers {
             return posts;
         }
 
-        // Get /posts/:id
-        [HttpGet("{id}")]
-        public ActionResult<PostDto> GetPost(Guid id) {
-            var post = repository.GetPost(id);
+        // Get /posts/:slug
+        [HttpGet("{slug}")]
+        public ActionResult<PostDto> GetPost(string slug) {
+            var post = repository.GetPost(slug);
 
             if (post is null) {
                 return NotFound();
