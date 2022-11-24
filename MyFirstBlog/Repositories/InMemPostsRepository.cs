@@ -16,7 +16,7 @@ namespace MyFirstBlog.Repositories {
             return posts;
         }
 
-        public Post GetPost(string slug)
+        public Post GetPost(String slug)
         {
             return posts.Where(post => post.Slug == slug).SingleOrDefault();
         }
