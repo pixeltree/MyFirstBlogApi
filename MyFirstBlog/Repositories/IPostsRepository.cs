@@ -1,11 +1,9 @@
-using System;
-using System.Collections.Generic;
 using MyFirstBlog.Models;
 
 namespace MyFirstBlog.Repositories {
     public interface IPostsRepository
     {
-        Post GetPost(Guid id);
+        Post GetPost(String slug);
         IEnumerable<Post> GetPosts();
     }
 }
