@@ -2,11 +2,22 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": ".NET Core Launch (console)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/bin/Debug/net7.0/MyFirstBlog.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        },
+        {
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/Debug/net5.0/MyFirstBlog.dll",
+            "program": "${workspaceFolder}/bin/Debug/net7.0/MyFirstBlog.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
