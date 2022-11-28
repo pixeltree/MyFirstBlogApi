@@ -1,7 +1,7 @@
 namespace MyFirstBlog.Helpers;
 
 using Microsoft.EntityFrameworkCore;
-using MyFirstBlog.Models;
+using MyFirstBlog.Entities;
 
 
 public class DataContext : DbContext

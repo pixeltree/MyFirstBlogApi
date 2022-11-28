@@ -1,4 +1,4 @@
-namespace MyFirstBlog.Models;
+namespace MyFirstBlog.Entities;
 public record Post {
     public Guid Id { get; init; }
     public string Title { get; init; } = default!;

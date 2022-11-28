@@ -1,4 +1,4 @@
-using MyFirstBlog.Models;
+using MyFirstBlog.Entities;
 
 namespace MyFirstBlog.Repositories {
 

@@ -1,7 +1,6 @@
 namespace MyFirstBlog.Repositories;
 
-using MyFirstBlog.Models;
-using MyFirstBlog.Helpers;
+using MyFirstBlog.Entities;
 
 public interface IPostsRepository
 {
