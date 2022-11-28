@@ -1,3 +1,4 @@
+using MyFirstBlog.Helpers;
 using MyFirstBlog.Repositories;
 
 var  MyAllowLocalhostOrigins = "_myAllowLocalhostOrigins";
@@ -5,6 +6,8 @@ var  MyAllowLocalhostOrigins = "_myAllowLocalhostOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddDbContext<DataContext>();
 
 builder.Services.AddCors(policyBuilder => {
     policyBuilder.AddPolicy( MyAllowLocalhostOrigins,
