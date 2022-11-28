@@ -1,13 +1,15 @@
 using MyFirstBlog.Repositories;
 
+var  MyAllowLocalhostOrigins = "_myAllowLocalhostOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddCors(policyBuilder => {
-    policyBuilder.AddDefaultPolicy(
+    policyBuilder.AddPolicy( MyAllowLocalhostOrigins,
         policy => {
-            policy.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
+            policy.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod();
         });
 });
 
@@ -24,11 +26,14 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    app.UseCors(MyAllowLocalhostOrigins);
 }
 
-app.UseHttpsRedirection();
-
-app.UseCors();
+if (app.Environment.IsProduction())
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseAuthorization();
 
