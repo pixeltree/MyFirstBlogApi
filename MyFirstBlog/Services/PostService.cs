@@ -30,7 +30,7 @@ public class PostService : IPostService
 
     private Post getPost(string slug)
     {
-        var post = _context.Posts.Find(slug);
+        var post = _context.Posts.Where(post => post.Slug == slug).SingleOrDefault();
         if (post == null) throw new KeyNotFoundException("User not found");
         return post;
     }
