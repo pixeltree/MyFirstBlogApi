@@ -13,6 +13,5 @@ public static class DataHelper
         //Migration: This is the programmatic equivalent to Update-Database
         await dbContextSvc.Database.MigrateAsync();
     }
-
     
 }
