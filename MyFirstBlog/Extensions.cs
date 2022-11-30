@@ -1,5 +1,5 @@
 using MyFirstBlog.Dtos;
-using MyFirstBlog.Models;
+using MyFirstBlog.Entities;
 
 namespace MyFirstBlog {
     public static class Extensions {

@@ -1,28 +1,38 @@
-using MyFirstBlog.Repositories;
+using MyFirstBlog.Helpers;
+using MyFirstBlog.Services;
 
 var  MyAllowLocalhostOrigins = "_myAllowLocalhostOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 
+var services = builder.Services;
+var env = builder.Environment;
+
 // Add services to the container.
 
-builder.Services.AddCors(policyBuilder => {
+services.AddDbContext<DataContext>();
+
+services.AddCors(policyBuilder => {
     policyBuilder.AddPolicy( MyAllowLocalhostOrigins,
         policy => {
             policy.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod();
         });
 });
 
-builder.Services.AddSingleton<IPostsRepository, InMemPostsRepository>();
-builder.Services.AddControllers();
+services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+services.AddEndpointsApiExplorer();
+services.AddSwaggerGen();
+
+services.AddScoped<IPostService, PostService>();
 
 var app = builder.Build();
 
+var scope = app.Services.CreateScope();
+await DataHelper.ManageDataAsync(scope.ServiceProvider);
+
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (env.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
@@ -30,7 +40,7 @@ if (app.Environment.IsDevelopment())
     app.UseCors(MyAllowLocalhostOrigins);
 }
 
-if (app.Environment.IsProduction())
+if (env.IsProduction())
 {
     app.UseHttpsRedirection();
 }
