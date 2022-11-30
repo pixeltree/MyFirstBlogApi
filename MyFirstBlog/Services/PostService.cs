@@ -31,7 +31,7 @@ public class PostService : IPostService
     private Post getPost(string slug)
     {
         var post = _context.Posts.Where(post => post.Slug == slug).SingleOrDefault();
-        if (post == null) throw new KeyNotFoundException("User not found");
+        if (post == null) throw new KeyNotFoundException("Post not found");
         return post;
     }
 }
