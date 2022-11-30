@@ -15,7 +15,7 @@ public class DataContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
+        options.UseNpgsql(ConnectionHelper.GetConnectionString(Configuration));
     }
 
     public DbSet<Post> Posts { get; set; }
