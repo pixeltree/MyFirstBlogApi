@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using MyFirstBlog.Helpers;
 using MyFirstBlog.Services;
 
@@ -24,6 +25,24 @@ services.AddControllers();
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+     .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, c =>
+     {
+         c.Authority = $"https://{builder.Configuration["Auth0:Domain"]}";
+         c.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+         {
+             ValidAudience = builder.Configuration["Auth0:Audience"],
+             ValidIssuer = $"{builder.Configuration["Auth0:Domain"]}"
+         };
+     });
+
+builder.Services.AddAuthorization(o =>
+    {
+        o.AddPolicy("post:read-write", p => p.
+            RequireAuthenticatedUser().
+            RequireClaim("scope", "post:read-write"));
+    });
+
 services.AddScoped<IPostService, PostService>();
 
 var app = builder.Build();
@@ -45,6 +64,7 @@ if (env.IsProduction())
     app.UseHttpsRedirection();
 }
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
