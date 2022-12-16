@@ -1,7 +1,6 @@
 namespace MyFirstBlog.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 using MyFirstBlog.Dtos;
 using MyFirstBlog.Services;
 
@@ -16,7 +15,6 @@ public class PostsController : ControllerBase {
     }
 
     // Get /posts
-    [Authorize]
     [HttpGet]
     public IEnumerable<PostDto> GetPosts() {
         var posts = _postService.GetPosts().Select(post => post.AsDto());
@@ -25,7 +23,6 @@ public class PostsController : ControllerBase {
     }
 
     // Get /posts/:slug
-    [Authorize]
     [HttpGet("{slug}")]
     public ActionResult<PostDto> GetPost(string slug) {
         var post = _postService.GetPost(slug);
